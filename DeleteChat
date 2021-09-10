@@ -1,0 +1,7 @@
+case prefix+'del':
+				case prefix+'delete':
+					if (!isUser) return reply(mess.only.userB)
+					if (isBanned) return reply(mess.only.benned)
+					try {
+					if (msg.message.extendedTextMessage.contextInfo.participant != caliph.user.jid) return reply('Tidak Dapat Menghapus Pesan Orang Lain!')
+					caliph.deleteMessage(from, { id: msg.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
