@@ -1,0 +1,13 @@
+case 'grup':
+		case 'group':
+					if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+					if (args[0] === 'buka') {
+					    reply(`*BERHASIL MEMBUKA GROUP*`)
+						client.groupSettingChange(from, GroupSettingChange.messageSend, false)
+					} else if (args[0] === 'tutup') {
+						reply(`*BERHASIL MENUTUP GROUP*`)
+						client.groupSettingChange(from, GroupSettingChange.messageSend, true)
+					}
+					break
