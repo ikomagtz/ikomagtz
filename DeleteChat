@@ -5,3 +5,9 @@ case prefix+'del':
 					try {
 					if (msg.message.extendedTextMessage.contextInfo.participant != caliph.user.jid) return reply('Tidak Dapat Menghapus Pesan Orang Lain!')
 					caliph.deleteMessage(from, { id: msg.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
+					 } catch (e) {
+			caliph.sendMessage(from, `Salah!!, kirim perintah *${prefix}delete [replypesanbot]*`, text, {quoted: msg})
+		}
+					
+addFilter(sender)
+					break
