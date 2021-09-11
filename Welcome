@@ -1,0 +1,17 @@
+case 'welcome':
+					if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (args.length < 1) return reply('Mengaktifkan tekan 1, Menonaktif tekan 0')
+					if (Number(args[0]) === 1) {
+						if (isWelkom) return reply('*Fitur welcome sudah aktif sebelum nya')
+						welkom.push(from)
+						fs.writeFileSync('./database/bot/welkom.json', JSON.stringify(welkom))
+						reply('❬ SUCCSESS ❭ mengaktifkan fitur welcome di group ini')
+					} else if (Number(args[0]) === 0) {
+						welkom.splice(from, 1)
+						fs.writeFileSync('./database/bot/welkom.json', JSON.stringify(welkom))
+						reply('❬ SUCCSESS ❭ menonaktifkan fitur welcome di group ini')
+					} else {
+						reply(ind.satukos())
+					}
+					break
