@@ -1,0 +1,44 @@
+case 'antilink':
+              if (!isGroup) return reply(mess.only.group)
+				if (!isGroupAdmins) return reply(mess.only.admin)
+				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Ketik 1 untuk mengaktifkan')
+				if (Number(args[0]) === 1) {
+				if (isAntilink) return reply('Anti link group sudah aktif')
+				antilink.push(from)
+				fs.writeFileSync('./database/kelompok/antilink.json', JSON.stringify(antilink))
+				reply('Sukses mengaktifkan anti link group di group ini ✔️')
+				client.sendMessage(from,`Perhatian kepada seluruh member anti link group aktif apabila anda mengirim link group anda akan di kick dari group`, text)
+				} else if (Number(args[0]) === 0) {
+				if (!isAntilink) return reply('Mode anti link group sudah disable')
+				antilink.splice(from, 1)
+				fs.writeFileSync('./database/kelompok/antilink.json', JSON.stringify(antilink))
+				reply('Sukes menonaktifkan anti link group di group ini ✔️')
+				} else {
+				reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+				}
+				break 
+if (messagesC.includes("://chat.whatsapp.com/")){
+		if (!isGroup) return
+		if (!isAntilink) return
+		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 3000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("1detik")
+		}, 2000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("2detik")
+		}, 1000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("3detik")
+		}, 0)
+	}
